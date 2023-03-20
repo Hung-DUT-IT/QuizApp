@@ -43,18 +43,18 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/oip" />
     <ImageView
         android:layout_width="333dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:src="@drawable/ic_side_bg"
         android:layout_gravity="center"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginBottom="20dp"
@@ -71,7 +71,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginBottom="30dp"
@@ -86,24 +86,31 @@
             android:textColor="@color/white"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="30dp"
+        android:textColorHint="@color/white">
+        <EditText
+            android:id="@+id/edit_confirm_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
         android:layout_width="280dp"
         android:layout_height="56dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:backgroundTint="#2E425A"
         android:layout_gravity="center"
-        android:text="Sign In"
+        android:text="Sign Up"
         app:cornerRadius="20dp"/>
-    <TextView
-        android:id="@+id/tv_forgot_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="Forgot Password?"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
-
 </LinearLayout>
