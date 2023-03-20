@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav"
+    app:startDestination="@id/splashCreen">
+
+    <fragment
+        android:id="@+id/splashCreen"
+        android:name="com.example.quizapp.SplashCreen"
+        android:label="fragment_splash_creen"
+        tools:layout="@layout/fragment_splash_creen" >
+        <action
+            android:id="@+id/action_splashCreen_to_login_SignUp_Option"
+            app:destination="@id/login_SignUp_Option" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_SignUp_Option"
+        android:name="com.example.quizapp.Login_SignUp_Option"
+        android:label="fragment_login__sign_up__option"
+        tools:layout="@layout/fragment_login__sign_up__option" >
+        <action
+            android:id="@+id/action_login_SignUp_Option_to_boarding_SignUp"
+            app:destination="@id/boarding_SignUp" />
+    </fragment>
+    <fragment
+        android:id="@+id/boarding_SignUp"
+        android:name="com.example.quizapp.Boarding_SignUp"
+        android:label="fragment_boarding__sign_up"
+        tools:layout="@layout/fragment_boarding__sign_up" >
+        <action
+            android:id="@+id/action_boarding_SignUp_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.quizapp.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>
