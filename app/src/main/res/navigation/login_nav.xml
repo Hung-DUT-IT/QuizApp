@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_splashCreen_to_login_SignUp_Option"
             app:destination="@id/login_SignUp_Option" />
-        <action
-            android:id="@+id/action_splashCreen_to_boarding_SignUp"
-            app:destination="@id/boarding_SignUp" />
     </fragment>
     <fragment
         android:id="@+id/login_SignUp_Option"
@@ -23,14 +20,14 @@
         android:label="fragment_login__sign_up__option"
         tools:layout="@layout/fragment_login__sign_up__option" >
         <action
-            android:id="@+id/action_login_SignUp_Option_to_login"
-            app:destination="@id/login" />
+            android:id="@+id/action_login_SignUp_Option_to_splashCreen"
+            app:destination="@id/splashCreen" />
         <action
             android:id="@+id/action_login_SignUp_Option_to_boarding_SignUp"
             app:destination="@id/boarding_SignUp" />
         <action
-            android:id="@+id/action_login_SignUp_Option_to_splashCreen"
-            app:destination="@id/splashCreen" />
+            android:id="@+id/action_login_SignUp_Option_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/boarding_SignUp"
@@ -38,14 +35,11 @@
         android:label="fragment_boarding__sign_up"
         tools:layout="@layout/fragment_boarding__sign_up" >
         <action
-            android:id="@+id/action_boarding_SignUp_to_signUp"
-            app:destination="@id/signUp" />
-        <action
             android:id="@+id/action_boarding_SignUp_to_login_SignUp_Option"
             app:destination="@id/login_SignUp_Option" />
         <action
-            android:id="@+id/action_boarding_SignUp_to_splashCreen"
-            app:destination="@id/splashCreen" />
+            android:id="@+id/action_boarding_SignUp_to_signUp"
+            app:destination="@id/signUp" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -56,11 +50,7 @@
         android:id="@+id/signUp"
         android:name="com.example.quizapp.View.SignUp"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
-        <action
-            android:id="@+id/action_signUp_to_login"
-            app:destination="@id/login" />
-    </fragment>
+        tools:layout="@layout/fragment_sign_up" />
     <fragment
         android:id="@+id/fragmentPager"
         android:name="com.example.quizapp.View.FragmentPager"
