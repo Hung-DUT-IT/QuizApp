@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav"
-    app:startDestination="@id/splashCreen">
+    app:startDestination="@id/fragmentPager">
 
     <fragment
         android:id="@+id/splashCreen"
@@ -60,5 +60,14 @@
         <action
             android:id="@+id/action_signUp_to_login"
             app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPager"
+        android:name="com.example.quizapp.View.FragmentPager"
+        android:label="fragment_pager"
+        tools:layout="@layout/fragment_pager" >
+        <action
+            android:id="@+id/action_fragmentPager_to_splashCreen"
+            app:destination="@id/splashCreen" />
     </fragment>
 </navigation>
