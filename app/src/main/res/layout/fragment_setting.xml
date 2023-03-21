@@ -18,6 +18,7 @@
             android:layout_gravity="center">
 
             <ImageView
+                android:id="@+id/img_back"
                 android:layout_width="22dp"
                 android:layout_height="68dp"
                 android:layout_gravity="left"

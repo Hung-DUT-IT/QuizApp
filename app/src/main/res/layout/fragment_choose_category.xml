@@ -18,6 +18,7 @@
             android:layout_gravity="center">
 
             <ImageView
+                android:id="@+id/img_back"
                 android:layout_width="22dp"
                 android:layout_height="68dp"
                 android:layout_gravity="left"
@@ -46,6 +47,7 @@
             app:strokeWidth="2dp">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_category"
                 android:layout_width="360dp"
                 android:layout_height="510dp"
                 android:layout_marginTop="10dp"
@@ -55,6 +57,7 @@
 
             </androidx.recyclerview.widget.RecyclerView>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_next"
                 android:layout_width="350dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"

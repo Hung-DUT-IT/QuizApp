@@ -17,6 +17,7 @@
             android:layout_gravity="center">
 
             <ImageView
+                android:id="@+id/img_back"
                 android:layout_width="22dp"
                 android:layout_height="68dp"
                 android:layout_gravity="left"
@@ -59,7 +60,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tx_label_count_question"
+                    android:id="@+id/tv_label_count_question"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -70,7 +71,7 @@
                     android:textStyle="normal|italic" />
 
                 <TextView
-                    android:id="@+id/tx_count_question"
+                    android:id="@+id/tv_count_question"
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -98,7 +99,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tx_label_rank"
+                    android:id="@+id/tv_label_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -109,7 +110,7 @@
                     android:textStyle="normal|italic" />
 
                 <TextView
-                    android:id="@+id/tx_rank"
+                    android:id="@+id/tv_rank"
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

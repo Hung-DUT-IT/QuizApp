@@ -17,6 +17,7 @@
             android:layout_gravity="center">
 
             <ImageView
+                android:id="@+id/img_back"
                 android:layout_width="22dp"
                 android:layout_height="68dp"
                 android:layout_gravity="left"
@@ -120,6 +121,7 @@
             app:strokeWidth="2dp">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_user_play_game"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"

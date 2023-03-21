@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical|right"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Name Category"
+                android:text="Question"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -45,7 +45,7 @@
             app:cardElevation="10dp"
             app:strokeWidth="2dp">
             <TextView
-                android:id="@+id/count_question"
+                android:id="@+id/tv_count_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -62,7 +62,7 @@
                 android:layout_gravity="center_vertical|center"
                 android:src="@drawable/alarm" />
             <TextView
-                android:id="@+id/countdown_timer"
+                android:id="@+id/tv_countdown_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -84,6 +84,7 @@
             app:strokeWidth="2dp">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_question"
                 android:layout_width="360dp"
                 android:layout_height="510dp"
                 android:layout_gravity="center|top"
@@ -94,6 +95,7 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_next_question"
                 android:layout_width="350dp"
                 android:layout_height="70dp"
                 android:layout_gravity="bottom|center"
