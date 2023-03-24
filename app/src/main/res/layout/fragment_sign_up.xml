@@ -8,10 +8,11 @@
         android:layout_height="match_parent"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:background="#242A42">
+        android:background="#242A42"
+        tools:context=".View.SignUp">
 
         <ImageView
-            android:id="@+id/img_back"
+            android:id="@+id/btn_back"
             android:layout_width="22dp"
             android:layout_height="68dp"
             android:src="@drawable/ic_back_img" />

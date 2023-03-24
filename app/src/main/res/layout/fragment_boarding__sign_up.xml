@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="100dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
             app:strokeWidth="2dp">
@@ -57,19 +57,38 @@
                     android:backgroundTint="#2E425A"
                     android:text="Sign Up"
                     app:cornerRadius="20dp" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="284dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:lineSpacingExtra="8sp"
-                    android:text="Already have an account? Sign In"
-                    android:textColor="#001833"
-                    android:textSize="16sp"
-                    android:textStyle="normal|bold" />
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:layout_marginLeft="30dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:lineSpacingExtra="8sp"
+                        android:text="Already have an account?"
+                        android:textColor="#001833"
+                        android:textSize="16sp"
+                        android:textStyle="normal|bold" />
+                    <TextView
+                        android:id="@+id/tv_sign_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="2dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="Sign In"
+                        android:textColor="#015ABF"
+                        android:textSize="16sp"
+                        android:textStyle="normal|bold" />
+                </LinearLayout>
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
