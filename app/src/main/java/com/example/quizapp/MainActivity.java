@@ -1,21 +1,57 @@
 package com.example.quizapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import android.os.Bundle;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quizapp.View.Boarding_SignUp;
-import com.example.quizapp.View.Login_SignUp_Option;
-import com.example.quizapp.View.SplashCreen;
-import com.example.quizapp.databinding.ActivityMainBinding;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
+import com.example.quizapp.Adapter.CategoryAdapter;
+import com.example.quizapp.Model.Question;
+import com.example.quizapp.View.HomeFragment;
+import com.example.quizapp.View.PlayGameFragment;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        // Khởi tạo fragmentManager
+//        fragmentManager = getSupportFragmentManager();
+//
+//        // Thêm HomeFragment vào MainActivity
+//        fragmentTransaction = fragmentManager.beginTransaction();
+//        HomeFragment homeFragment = new HomeFragment();
+//        fragmentTransaction.add(R.id.fragmentContainerView, homeFragment, "home_fragment");
+//        fragmentTransaction.commit();
     }
+
+//    public void goToDetailFragment(Question question) {
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//
+//        PlayGameFragment playGameFragment = new PlayGameFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("", question);
+//        playGameFragment.setArguments(bundle);
+//        fragmentTransaction.replace(R.id.fragmentContainerView, playGameFragment);
+//        fragmentTransaction.commit();
+//    }
 }

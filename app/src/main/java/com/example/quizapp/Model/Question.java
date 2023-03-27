@@ -1,8 +1,9 @@
 package com.example.quizapp.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question {
+public class Question implements Serializable {
     public String category;
     public String type;
     public String difficulty;
@@ -66,4 +67,11 @@ public class Question {
         this.correct_answer = correct_answer;
         this.incorrect_answers = incorrect_answers;
     }
+    public Question(String category){
+        this.category = category;
+    }
+    public Question(){
+
+    }
+
 }
