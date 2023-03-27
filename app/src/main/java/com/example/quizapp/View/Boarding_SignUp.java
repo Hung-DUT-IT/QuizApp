@@ -41,5 +41,12 @@ public class Boarding_SignUp extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.signUp);
             }
         });
+
+        binding.tvSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.login);
+            }
+        });
     }
 }
