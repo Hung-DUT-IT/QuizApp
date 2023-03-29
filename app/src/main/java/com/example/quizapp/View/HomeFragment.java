@@ -1,11 +1,13 @@
 package com.example.quizapp.View;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         mainActivity = (MainActivity) getActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -56,7 +59,8 @@ public class HomeFragment extends Fragment {
         categoryAdapter = new CategoryAdapter(getActivity(), allitem, new CategoryAdapter.CategoryClickListener() {
             @Override
             public void onCategoryClick(Question question) {
-                //mainActivity.goToDetailFragment(question);
+                String category = question.getCategory();
+                getQuestionsByCategory(category);
             }
         });
         rclCategoryList.setAdapter(categoryAdapter);
@@ -81,4 +85,32 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+    public void getQuestionsByCategory(String category) {
+        // Truy vấn danh sách câu hỏi theo category
+        database.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Question> questions = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Question question = snapshot.getValue(Question.class);
+                    questions.add(question);
+                }
+                // Hiển thị danh sách câu hỏi trong một hộp thoại
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Questions for " + category);
+                builder.setCancelable(true);
+                StringBuilder sb = new StringBuilder();
+                for (Question question : questions) {
+                    sb.append("\n\n`").append("-> "+question.getQuestion());
+                }
+                builder.setMessage(sb.toString());
+                builder.show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
 }

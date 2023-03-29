@@ -1,6 +1,7 @@
 package com.example.quizapp.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizapp.Model.Question;
 import com.example.quizapp.R;
+import com.example.quizapp.View.HomeFragment;
 
 import java.util.ArrayList;
 
@@ -59,5 +61,5 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                 super(itemView);
                 cate = itemView.findViewById(R.id.tv_name_category);
             }
-        }
+    }
 }
