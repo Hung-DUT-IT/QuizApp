@@ -3,6 +3,8 @@ package com.example.quizapp.View;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,29 +18,36 @@ import com.example.quizapp.Adapter.CategoryAdapter;
 import com.example.quizapp.MainActivity;
 import com.example.quizapp.Model.Question;
 import com.example.quizapp.R;
+import com.example.quizapp.databinding.FragmentHomeBinding;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class HomeFragment extends Fragment {
+    private FragmentHomeBinding binding;
     private DatabaseReference database;
     private CategoryAdapter categoryAdapter;
     private ArrayList<Question> allitem;
     private Set<String> categorySet;
     private MainActivity mainActivity;
+    private ArrayList<Question> allItemCatelogy;
+
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -47,9 +56,15 @@ public class HomeFragment extends Fragment {
 
         mainActivity = (MainActivity) getActivity();
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
 
-        RecyclerView rclCategoryList = view.findViewById(R.id.rv_category);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView rclCategoryList = binding.rvCategory;
         rclCategoryList.setHasFixedSize(true);
         rclCategoryList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -60,10 +75,29 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCategoryClick(Question question) {
                 String category = question.getCategory();
-                getQuestionsByCategory(category);
+                try {
+                    getQuestionsByCategory(category)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    List<Question> meetings = task.getResult();
+                                    // TODO: Handle
+                                    Log.d("ABC",meetings.size() + "");
+                                } else {
+                                    Exception ex = task.getException();
+                                    // TODO: Handle
+                                }
+                            });
+
+                }catch (CompletionException e){
+                    Log.d("ERROR", e.toString());
+                }
             }
         });
+        allItemCatelogy = new ArrayList<>();
+
+        categoryAdapter.setHomeFragment(this); // Thêm dòng này
         rclCategoryList.setAdapter(categoryAdapter);
+
 
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -82,35 +116,32 @@ public class HomeFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        return view;
     }
-    public void getQuestionsByCategory(String category) {
-        // Truy vấn danh sách câu hỏi theo category
+
+    public Task<List<Question>> getQuestionsByCategory(String category) {
+
+        TaskCompletionSource<List<Question>> tcs = new TaskCompletionSource<>();
+        ArrayList<Question> questions = new ArrayList<>();
+
         database.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Question> questions = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Question question = snapshot.getValue(Question.class);
+                for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
+                    Question question = questionSnapshot.getValue(Question.class);
                     questions.add(question);
                 }
-                // Hiển thị danh sách câu hỏi trong một hộp thoại
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Questions for " + category);
-                builder.setCancelable(true);
-                StringBuilder sb = new StringBuilder();
-                for (Question question : questions) {
-                    sb.append("\n\n`").append("-> "+question.getQuestion());
-                }
-                builder.setMessage(sb.toString());
-                builder.show();
+
+                // Resolve the task with the list of questions
+                tcs.setResult(questions);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                // Reject the task with the database error
+                tcs.setException(databaseError.toException());
             }
         });
-    }
 
+        return tcs.getTask();
+    }
 }

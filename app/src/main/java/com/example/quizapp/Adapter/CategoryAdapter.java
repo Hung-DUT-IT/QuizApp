@@ -15,26 +15,31 @@ import com.example.quizapp.R;
 import com.example.quizapp.View.HomeFragment;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
     Context context;
+    private HomeFragment homeFragment;
     private CategoryClickListener categoryClickListener;
-    ArrayList<Question> list ;
+    ArrayList<Question> list;
 
     public interface CategoryClickListener {
         void onCategoryClick(Question question);
     }
 
-    public CategoryAdapter(Context context, ArrayList<Question> list,CategoryClickListener listener) {
+    public CategoryAdapter(Context context, ArrayList<Question> list, CategoryClickListener listener) {
         this.context = context;
         this.list = list;
         this.categoryClickListener = listener;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.category_item_row,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.category_item_row, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -56,10 +61,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView cate;
-            public MyViewHolder(@NonNull View itemView) {
-                super(itemView);
-                cate = itemView.findViewById(R.id.tv_name_category);
-            }
+        TextView cate;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cate = itemView.findViewById(R.id.tv_name_category);
+        }
+    }
+
+    public void setHomeFragment(HomeFragment homeFragment) {
+        this.homeFragment = homeFragment;
     }
 }

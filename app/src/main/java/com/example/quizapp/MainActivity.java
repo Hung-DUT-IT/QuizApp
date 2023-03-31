@@ -34,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        // Khởi tạo fragmentManager
-//        fragmentManager = getSupportFragmentManager();
-//
-//        // Thêm HomeFragment vào MainActivity
-//        fragmentTransaction = fragmentManager.beginTransaction();
-//        HomeFragment homeFragment = new HomeFragment();
-//        fragmentTransaction.add(R.id.fragmentContainerView, homeFragment, "home_fragment");
-//        fragmentTransaction.commit();
+        // Khởi tạo fragmentManager
+        fragmentManager = getSupportFragmentManager();
+
+        // Thêm HomeFragment vào MainActivity
+        fragmentTransaction = fragmentManager.beginTransaction();
+        HomeFragment homeFragment = new HomeFragment();
+        fragmentTransaction.add(R.id.fragmentContainerView, homeFragment, "home_fragment");
+        fragmentTransaction.commit();
     }
 
 //    public void goToDetailFragment(Question question) {
