@@ -3,6 +3,8 @@ package com.example.quizapp.View;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import com.example.quizapp.Adapter.CategoryAdapter;
 import com.example.quizapp.MainActivity;
 import com.example.quizapp.Model.Question;
 import com.example.quizapp.R;
+import com.example.quizapp.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,21 +27,22 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class HomeFragment extends Fragment {
+    private FragmentHomeBinding binding;
     private DatabaseReference database;
     private CategoryAdapter categoryAdapter;
     private ArrayList<Question> allitem;
     private Set<String> categorySet;
     private MainActivity mainActivity;
+
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -47,9 +51,15 @@ public class HomeFragment extends Fragment {
 
         mainActivity = (MainActivity) getActivity();
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
 
-        RecyclerView rclCategoryList = view.findViewById(R.id.rv_category);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView rclCategoryList = binding.rvCategory;
         rclCategoryList.setHasFixedSize(true);
         rclCategoryList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -60,10 +70,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCategoryClick(Question question) {
                 String category = question.getCategory();
-                getQuestionsByCategory(category);
+                CompletableFuture<List<Question>> futureQuestionList = (CompletableFuture<List<Question>>) getQuestionsByCategory(category);
+                futureQuestionList.thenAcceptAsync(questions -> {
+                    for (Question q : questions) {
+                        Log.d("Question", String.valueOf(q));
+                    }
+                });
             }
         });
+        categoryAdapter.setHomeFragment(this); // Thêm dòng này
         rclCategoryList.setAdapter(categoryAdapter);
+
 
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -82,10 +99,12 @@ public class HomeFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        return view;
     }
-    public void getQuestionsByCategory(String category) {
+
+    public Future<List<Question>> getQuestionsByCategory(String category) {
+        // Khởi tạo một promise để trả về danh sách câu hỏi
+        CompletableFuture<List<Question>> promise = new CompletableFuture<>();
+
         // Truy vấn danh sách câu hỏi theo category
         database.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,22 +114,19 @@ public class HomeFragment extends Fragment {
                     Question question = snapshot.getValue(Question.class);
                     questions.add(question);
                 }
-                // Hiển thị danh sách câu hỏi trong một hộp thoại
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Questions for " + category);
-                builder.setCancelable(true);
-                StringBuilder sb = new StringBuilder();
-                for (Question question : questions) {
-                    sb.append("\n\n`").append("-> "+question.getQuestion());
-                }
-                builder.setMessage(sb.toString());
-                builder.show();
+                // Trả về danh sách câu hỏi
+                promise.complete(questions);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                // Nếu truy vấn bị hủy, thì đánh dấu promise là thất bại
+                promise.completeExceptionally(databaseError.toException());
             }
         });
+        // Trả về promise dưới dạng Future
+        return promise;
+
     }
 
 }
