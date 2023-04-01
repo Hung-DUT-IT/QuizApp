@@ -71,6 +71,7 @@
                 android:layout_gravity="right"
                 android:text="00:00:00"/>
         </com.google.android.material.card.MaterialCardView>
+        <!-- Text View to display question -->
 
 
         <com.google.android.material.card.MaterialCardView
@@ -82,18 +83,53 @@
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
             app:strokeWidth="2dp">
+            <TextView
+                android:id="@+id/question_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:text="@string/hello" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_question"
-                android:layout_width="360dp"
-                android:layout_height="510dp"
-                android:layout_gravity="center|top"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
+            <!-- Button 1 -->
+            <Button
+                android:id="@+id/option_button_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Option 1"
+                android:layout_marginTop="105dp"
+                />
 
-            </androidx.recyclerview.widget.RecyclerView>
+            <!-- Button 2 -->
+            <Button
+                android:id="@+id/option_button_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Option 2"
+                android:layout_marginTop="155dp"
+                />
 
+            <!-- Button 3 -->
+            <Button
+                android:id="@+id/option_button_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Option 3"
+                android:layout_marginTop="205dp"
+                />
+
+            <!-- Button 4 -->
+            <Button
+                android:id="@+id/option_button_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Option 4"
+                android:layout_marginTop="255dp"
+                />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_next_question"
                 android:layout_width="350dp"
@@ -106,6 +142,8 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:cornerRadius="20dp" />
+
+
         </com.google.android.material.card.MaterialCardView>
 
 

@@ -76,20 +76,20 @@ public class HomeFragment extends Fragment {
         categoryAdapter = new CategoryAdapter(allitem);
         rclCategoryList.setAdapter(categoryAdapter);
         // Thiết lập listener cho adapter
-        categoryAdapter.setListener(new CategoryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(String category) {
-                // Xử lý sự kiện click
-                Log.d(TAG, "Category clicked: " + category);
-                // Chuyển tới trang khác
-                PlayGameFragment fragment = new PlayGameFragment();
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainerView, fragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
+//        categoryAdapter.setListener(new CategoryAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(String category) {
+//                // Xử lý sự kiện click
+//                Log.d(TAG, "Category clicked: " + category);
+//                // Chuyển tới trang khác
+//                PlayGameFragment fragment = new PlayGameFragment();
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragmentContainerView, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+ //       });
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
