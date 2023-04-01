@@ -1,21 +1,14 @@
 package com.example.quizapp.View;
-<<<<<<< HEAD
-=======
 
 import static android.content.ContentValues.TAG;
 
 import android.app.AlertDialog;
->>>>>>> eb743f309e4d11ad34ff3f457406c7c504452d1b
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-<<<<<<< HEAD
-import androidx.navigation.Navigation;
-=======
 import androidx.fragment.app.FragmentTransaction;
->>>>>>> eb743f309e4d11ad34ff3f457406c7c504452d1b
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -82,49 +76,20 @@ public class HomeFragment extends Fragment {
         categoryAdapter = new CategoryAdapter(allitem);
         rclCategoryList.setAdapter(categoryAdapter);
         // Thiết lập listener cho adapter
-        categoryAdapter.setListener(new CategoryAdapter.OnItemClickListener() {
-            @Override
-<<<<<<< HEAD
-            public void onCategoryClick(Question question) {
-                String category = question.getCategory();
-                try {
-                    getQuestionsByCategory(category)
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    List<Question> meetings = task.getResult();
-                                    // TODO: Handle
-
-                                    Log.d("ABC",meetings.size() + "");
-                                } else {
-                                    Exception ex = task.getException();
-                                    // TODO: Handle
-                                }
-                            });
-
-                }catch (CompletionException e){
-                    Log.d("ERROR", e.toString());
-                }
-            }
-        });
-        allItemCatelogy = new ArrayList<>();
-
-        rclCategoryList.setAdapter(categoryAdapter);
-
-
-=======
-            public void onItemClick(String category) {
-                // Xử lý sự kiện click
-                Log.d(TAG, "Category clicked: " + category);
-                // Chuyển tới trang khác
-                PlayGameFragment fragment = new PlayGameFragment();
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainerView, fragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
->>>>>>> eb743f309e4d11ad34ff3f457406c7c504452d1b
+//        categoryAdapter.setListener(new CategoryAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(String category) {
+//                // Xử lý sự kiện click
+//                Log.d(TAG, "Category clicked: " + category);
+//                // Chuyển tới trang khác
+//                PlayGameFragment fragment = new PlayGameFragment();
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragmentContainerView, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+        //       });
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -143,30 +108,5 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    public Task<List<Question>> getQuestionsByCategory(String category) {
 
-        TaskCompletionSource<List<Question>> tcs = new TaskCompletionSource<>();
-        ArrayList<Question> questions = new ArrayList<>();
-
-        database.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
-                    Question question = questionSnapshot.getValue(Question.class);
-                    questions.add(question);
-                }
-
-                // Resolve the task with the list of questions
-                tcs.setResult(questions);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Reject the task with the database error
-                tcs.setException(databaseError.toException());
-            }
-        });
-
-        return tcs.getTask();
-    }
 }

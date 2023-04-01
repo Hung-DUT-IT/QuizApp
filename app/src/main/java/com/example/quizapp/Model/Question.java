@@ -4,30 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Question implements Serializable {
-    public String id ;
     public String category;
     public String type;
     public String difficulty;
     public String question;
     public String correctAnswer;
     public ArrayList<String> incorrectAnswers;
-    public ArrayList<String> tags;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public ArrayList<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
-    }
 
     public String getCategory() {
         return category;
@@ -66,7 +48,7 @@ public class Question implements Serializable {
     }
 
     public void setCorrect_answer(String correct_answer) {
-        this.correctAnswer = correctAnswer;
+        this.correctAnswer = correct_answer;
     }
 
     public ArrayList<String> getIncorrect_answers() {
@@ -74,21 +56,16 @@ public class Question implements Serializable {
     }
 
     public void setIncorrect_answers(ArrayList<String> incorrect_answers) {
-        this.incorrectAnswers = incorrectAnswers;
+        this.incorrectAnswers = incorrect_answers;
     }
 
-    public Question(String id, String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswers, ArrayList<String> tags) {
-        this.id = id;
+    public Question(String category, String type, String difficulty, String question, String correct_answer, ArrayList<String> incorrect_answers) {
         this.category = category;
         this.type = type;
         this.difficulty = difficulty;
         this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.incorrectAnswers = incorrectAnswers;
-        this.tags = tags;
-    }
-    public Question(String category){
-        this.category = category;
+        this.correctAnswer = correct_answer;
+        this.incorrectAnswers = incorrect_answers;
     }
     public Question(){
 
