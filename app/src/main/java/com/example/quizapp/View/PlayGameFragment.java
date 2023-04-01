@@ -16,6 +16,15 @@ import java.util.List;
 
 
 public class PlayGameFragment extends Fragment {
+<<<<<<< HEAD
+=======
+    private List<Question> questions;
+
+    public PlayGameFragment() {
+        // Required empty public constructor
+//        questions = list;
+    }
+>>>>>>> eb743f309e4d11ad34ff3f457406c7c504452d1b
 
 
 }
