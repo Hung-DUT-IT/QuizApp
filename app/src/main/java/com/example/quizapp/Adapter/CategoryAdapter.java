@@ -1,7 +1,5 @@
 package com.example.quizapp.Adapter;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,64 +10,62 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizapp.Model.Question;
 import com.example.quizapp.R;
-import com.example.quizapp.View.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
-    Context context;
-    private HomeFragment homeFragment;
-    private CategoryClickListener categoryClickListener;
-    ArrayList<Question> list;
+    private List<Question> allitem;
+    private OnItemClickListener listener;
 
-    public interface CategoryClickListener {
-        void onCategoryClick(Question question);
+    public CategoryAdapter(List<Question> allitem) {
+        this.allitem = allitem;
     }
 
-    public CategoryAdapter(Context context, ArrayList<Question> list, CategoryClickListener listener) {
-        this.context = context;
-        this.list = list;
-        this.categoryClickListener = listener;
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.category_item_row, parent, false);
-        return new MyViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item_row, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Question question = list.get(position);
-        holder.cate.setText(question.getCategory());
-        holder.cate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                categoryClickListener.onCategoryClick(question);
-            }
-        });
+        Question question = allitem.get(position);
+        holder.categoryName.setText(question.getCategory());
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return allitem.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView cate;
+    public interface OnItemClickListener {
+        void onItemClick(String category);
+    }
 
-        public MyViewHolder(@NonNull View itemView) {
+    class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView categoryName;
+
+        MyViewHolder(View itemView) {
             super(itemView);
-            cate = itemView.findViewById(R.id.tv_name_category);
-        }
-    }
+            categoryName = itemView.findViewById(R.id.tv_name_category);
 
-    public void setHomeFragment(HomeFragment homeFragment) {
-        this.homeFragment = homeFragment;
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        String category = allitem.get(getAdapterPosition()).getCategory();
+                        listener.onItemClick(category); // Call onItemClick method of listener
+                    }
+                }
+            });
+        }
     }
 }

@@ -1,11 +1,14 @@
 package com.example.quizapp.View;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +47,6 @@ public class HomeFragment extends Fragment {
     private ArrayList<Question> allitem;
     private Set<String> categorySet;
     private MainActivity mainActivity;
-    private ArrayList<Question> allItemCatelogy;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -71,34 +73,18 @@ public class HomeFragment extends Fragment {
         database = FirebaseDatabase.getInstance().getReference("questions");
         allitem = new ArrayList<>();
         categorySet = new HashSet<>();
-        categoryAdapter = new CategoryAdapter(getActivity(), allitem, new CategoryAdapter.CategoryClickListener() {
+        categoryAdapter = new CategoryAdapter(allitem);
+        rclCategoryList.setAdapter(categoryAdapter);
+        // Thiết lập listener cho adapter
+        categoryAdapter.setListener(new CategoryAdapter.OnItemClickListener() {
             @Override
-            public void onCategoryClick(Question question) {
-                String category = question.getCategory();
-                try {
-                    getQuestionsByCategory(category)
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    List<Question> meetings = task.getResult();
-                                    // TODO: Handle
-                                    Log.d("ABC",meetings.size() + "");
-                                } else {
-                                    Exception ex = task.getException();
-                                    // TODO: Handle
-                                }
-                            });
-
-                }catch (CompletionException e){
-                    Log.d("ERROR", e.toString());
-                }
+            public void onItemClick(String category) {
+                // Xử lý sự kiện click
+                Log.d(TAG, "Category clicked: " + category);
+                // Chuyển tới trang khác
+                // ...
             }
         });
-        allItemCatelogy = new ArrayList<>();
-
-        categoryAdapter.setHomeFragment(this); // Thêm dòng này
-        rclCategoryList.setAdapter(categoryAdapter);
-
-
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,7 +103,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
     public Task<List<Question>> getQuestionsByCategory(String category) {
 
         TaskCompletionSource<List<Question>> tcs = new TaskCompletionSource<>();
