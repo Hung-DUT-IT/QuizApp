@@ -34,7 +34,7 @@
                 android:textSize="36sp"
                 android:textStyle="bold" />
         </LinearLayout>
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
@@ -53,7 +53,7 @@
                 android:textColor="#9087E5"
                 android:layout_gravity="left|center_vertical"
                 android:textStyle="bold"
-                android:text="0"/>
+                android:text=""/>
 
             <ImageView
                 android:layout_width="30dp"
@@ -69,12 +69,12 @@
                 android:textSize="30sp"
                 android:textColor="#9087E5"
                 android:layout_gravity="right"
-                android:text="00:00:00"/>
-        </com.google.android.material.card.MaterialCardView>
+                android:text="00:00"/>
+        </androidx.cardview.widget.CardView>
         <!-- Text View to display question -->
 
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:layout_width="380dp"
             android:layout_height="527dp"
             android:layout_gravity="center|bottom"
@@ -130,7 +130,7 @@
                 android:text="Option 4"
                 android:layout_marginTop="255dp"
                 />
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btn_next_question"
                 android:layout_width="350dp"
                 android:layout_height="70dp"
@@ -141,10 +141,10 @@
                 android:text="Next"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                app:cornerRadius="20dp" />
+                app:cornerRadius="20dp" ></Button>
 
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>

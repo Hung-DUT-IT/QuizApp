@@ -8,8 +8,8 @@ public class Question implements Serializable {
     public String type;
     public String difficulty;
     public String question;
-    public String correct_answer;
-    public ArrayList<String> incorrect_answers;
+    public String correctAnswer;
+    public ArrayList<String> incorrectAnswers;
 
     public String getCategory() {
         return category;
@@ -44,19 +44,19 @@ public class Question implements Serializable {
     }
 
     public String getCorrect_answer() {
-        return correct_answer;
+        return correctAnswer;
     }
 
     public void setCorrect_answer(String correct_answer) {
-        this.correct_answer = correct_answer;
+        this.correctAnswer = correct_answer;
     }
 
     public ArrayList<String> getIncorrect_answers() {
-        return incorrect_answers;
+        return incorrectAnswers;
     }
 
     public void setIncorrect_answers(ArrayList<String> incorrect_answers) {
-        this.incorrect_answers = incorrect_answers;
+        this.incorrectAnswers = incorrect_answers;
     }
 
     public Question(String category, String type, String difficulty, String question, String correct_answer, ArrayList<String> incorrect_answers) {
@@ -64,11 +64,8 @@ public class Question implements Serializable {
         this.type = type;
         this.difficulty = difficulty;
         this.question = question;
-        this.correct_answer = correct_answer;
-        this.incorrect_answers = incorrect_answers;
-    }
-    public Question(String category){
-        this.category = category;
+        this.correctAnswer = correct_answer;
+        this.incorrectAnswers = incorrect_answers;
     }
     public Question(){
 

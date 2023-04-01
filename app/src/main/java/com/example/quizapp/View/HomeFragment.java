@@ -108,30 +108,5 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    public Task<List<Question>> getQuestionsByCategory(String category) {
 
-        TaskCompletionSource<List<Question>> tcs = new TaskCompletionSource<>();
-        ArrayList<Question> questions = new ArrayList<>();
-
-        database.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
-                    Question question = questionSnapshot.getValue(Question.class);
-                    questions.add(question);
-                }
-
-                // Resolve the task with the list of questions
-                tcs.setResult(questions);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Reject the task with the database error
-                tcs.setException(databaseError.toException());
-            }
-        });
-
-        return tcs.getTask();
-    }
 }
