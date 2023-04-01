@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizapp.Model.Question;
@@ -47,12 +48,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Question question = list.get(position);
         holder.cate.setText(question.getCategory());
-        holder.cate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                categoryClickListener.onCategoryClick(question);
-            }
-        });
     }
 
     @Override
@@ -60,12 +55,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView cate;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cate = itemView.findViewById(R.id.tv_name_category);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.playGameFragment);
+
+                }
+            });
         }
     }
 
