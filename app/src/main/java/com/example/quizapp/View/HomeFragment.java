@@ -82,7 +82,12 @@ public class HomeFragment extends Fragment {
                 // Xử lý sự kiện click
                 Log.d(TAG, "Category clicked: " + category);
                 // Chuyển tới trang khác
-                // ...
+                PlayGameFragment fragment = new PlayGameFragment();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainerView, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         database.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -18,9 +18,9 @@ import java.util.List;
 public class PlayGameFragment extends Fragment {
     private List<Question> questions;
 
-    public PlayGameFragment(List<Question> list) {
+    public PlayGameFragment() {
         // Required empty public constructor
-        questions = list;
+//        questions = list;
     }
 
 
