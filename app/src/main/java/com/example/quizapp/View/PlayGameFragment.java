@@ -146,5 +146,19 @@ public class PlayGameFragment extends Fragment {
     }
     private void finishQuiz() {
         Log.d("Score",score + "");
+        countDownTimer.cancel();
+
+        // Create a bundle to pass the score to the GameCompletedFragment
+        Bundle bundle = new Bundle();
+        bundle.putInt("score", score);
+
+        // Create a new instance of GameCompletedFragment
+        GameCompletedFragment gameCompletedFragment = new GameCompletedFragment();
+        gameCompletedFragment.setArguments(bundle);
+
+        // Replace the current fragment with GameCompletedFragment
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerView, gameCompletedFragment)
+                .addToBackStack(null)
     }
 }

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.quizapp.R;
 
@@ -61,6 +62,16 @@ public class GameCompletedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_completed, container, false);
+        View view = inflater.inflate(R.layout.fragment_game_completed, container, false);
+
+        // Lấy giá trị score từ đối tượng Bundle
+        int score = getArguments().getInt("score");
+
+        // Hiển thị giá trị score lên giao diện người dùng
+        TextView scoreTextView = view.findViewById(R.id.tv_sum_count_question);
+        scoreTextView.setText("Score: " + score);
+
+        return view;
+
     }
 }

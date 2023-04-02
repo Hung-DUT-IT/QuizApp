@@ -89,7 +89,6 @@ public class HomeFragment extends Fragment {
 //                        .addToBackStack(null)
 //                        .commit();
 //            }
- //       });
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

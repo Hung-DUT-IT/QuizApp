@@ -113,5 +113,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         return tcs.getTask();
     }
-
 }
