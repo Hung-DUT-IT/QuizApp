@@ -160,6 +160,5 @@ public class PlayGameFragment extends Fragment {
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerView, gameCompletedFragment)
                 .addToBackStack(null)
-                .commit();
     }
 }

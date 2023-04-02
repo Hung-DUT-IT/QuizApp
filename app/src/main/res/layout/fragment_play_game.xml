@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:textSize="18sp"
-                 />
+                android:text="@string/hello" />
 
             <!-- Button 1 -->
             <Button
