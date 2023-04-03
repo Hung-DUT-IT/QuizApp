@@ -1,4 +1,4 @@
-package com.example.quizapp.Model;
+package com.example.quizapp.Model.Entity;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class User {
 
     public User(String username,String pass, String UID){
         this.UID = UID;
-        this.friendIDs = null;
+        this.friendIDs = new ArrayList<>();
         this.name = "name";
         this.pass = pass;
         this.prev_score = 0;

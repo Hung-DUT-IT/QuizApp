@@ -18,23 +18,24 @@
             android:layout_gravity="center">
 
             <ImageView
+                android:id="@+id/img_back"
                 android:layout_width="22dp"
                 android:layout_height="68dp"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:src="@drawable/ic_back_img" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal|center_vertical|right"
+                android:layout_gravity="center_horizontal|center_vertical|end"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Question"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
         </LinearLayout>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
@@ -51,14 +52,14 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="30sp"
                 android:textColor="#9087E5"
-                android:layout_gravity="left|center_vertical"
+                android:layout_gravity="start|center_vertical"
                 android:textStyle="bold"
-                android:text=""/>
+                android:text="0/0"/>
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="35dp"
+                android:layout_marginStart="75dp"
                 android:layout_gravity="center_vertical|center"
                 android:src="@drawable/alarm" />
             <TextView
@@ -68,84 +69,82 @@
                 android:layout_margin="10dp"
                 android:textSize="30sp"
                 android:textColor="#9087E5"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:text="00:00"/>
-        </androidx.cardview.widget.CardView>
-        <!-- Text View to display question -->
+        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:background="#242A42"
+            tools:context=".View.HomeFragment">
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="380dp"
-            android:layout_height="527dp"
-            android:layout_gravity="center|bottom"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="#CBDCE6"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:strokeWidth="2dp">
             <TextView
-                android:id="@+id/question_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textSize="18sp"
-                android:text="@string/hello" />
-
-            <!-- Button 1 -->
-            <Button
-                android:id="@+id/option_button_1"
+                android:id="@+id/tv_question"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Option 1"
-                android:layout_marginTop="105dp"
-                />
+                android:layout_height="115dp"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Question"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-            <!-- Button 2 -->
-            <Button
-                android:id="@+id/option_button_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Option 2"
-                android:layout_marginTop="155dp"
-                />
-
-            <!-- Button 3 -->
-            <Button
-                android:id="@+id/option_button_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Option 3"
-                android:layout_marginTop="205dp"
-                />
-
-            <!-- Button 4 -->
-            <Button
-                android:id="@+id/option_button_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Option 4"
-                android:layout_marginTop="255dp"
-                />
-            <Button
-                android:id="@+id/btn_next_question"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_question_a"
                 android:layout_width="350dp"
                 android:layout_height="70dp"
                 android:layout_gravity="bottom|center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
-                android:backgroundTint="#2E425A"
-                android:text="Next"
-                android:textSize="16dp"
+                android:backgroundTint="#CBDCE6"
+                android:textColor="#000000"
+                android:text="A"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                app:cornerRadius="20dp" ></Button>
+                app:cornerRadius="20dp" />
 
-
-        </androidx.cardview.widget.CardView>
-
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_question_b"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="#CBDCE6"
+                android:textColor="#000000"
+                android:text="B"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_question_c"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="#CBDCE6"
+                android:textColor="#000000"
+                android:text="C"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_question_d"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="#CBDCE6"
+                android:text="D"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

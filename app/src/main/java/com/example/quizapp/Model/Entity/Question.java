@@ -1,4 +1,4 @@
-package com.example.quizapp.Model;
+package com.example.quizapp.Model.Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

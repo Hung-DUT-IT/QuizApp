@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/quiz_nav"
+    app:startDestination="@id/pagerFragment">
+
+    <fragment
+        android:id="@+id/pagerFragment"
+        android:name="com.example.quizapp.View.PagerFragment"
+        android:label="fragment_pager"
+        tools:layout="@layout/fragment_pager" >
+        <action
+            android:id="@+id/action_pagerFragment_to_splassScreenFragment"
+            app:destination="@id/splassScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splassScreenFragment"
+        android:name="com.example.quizapp.View.SplassScreenFragment"
+        android:label="fragment_splass_screen"
+        tools:layout="@layout/fragment_splass_screen" >
+        <action
+            android:id="@+id/action_splassScreenFragment_to_boardSignInFragment"
+            app:destination="@id/boardSignInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardSignInFragment"
+        android:name="com.example.quizapp.View.BoardSignInFragment"
+        android:label="fragment_board_sign_in"
+        tools:layout="@layout/fragment_board_sign_in" >
+        <action
+            android:id="@+id/action_boardSignInFragment_to_boardSignUpFragment"
+            app:destination="@id/boardSignUpFragment" />
+        <action
+            android:id="@+id/action_boardSignInFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardSignUpFragment"
+        android:name="com.example.quizapp.View.BoardSignUpFragment"
+        android:label="fragment_board_sign_up"
+        tools:layout="@layout/fragment_board_sign_up" >
+        <action
+            android:id="@+id/action_boardSignUpFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.quizapp.View.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.quizapp.View.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.quizapp.View.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_chooseCategoryFragment"
+            app:destination="@id/chooseCategoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_playGameFragment"
+            app:destination="@id/playGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCategoryFragment"
+        android:name="com.example.quizapp.View.ChooseCategoryFragment"
+        android:label="fragment_choose_category"
+        tools:layout="@layout/fragment_choose_category" >
+        <action
+            android:id="@+id/action_chooseCategoryFragment_to_createQuestionFragment"
+            app:destination="@id/createQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createQuestionFragment"
+        android:name="com.example.quizapp.View.CreateQuestionFragment"
+        android:label="fragment_create_question"
+        tools:layout="@layout/fragment_create_question" />
+    <fragment
+        android:id="@+id/playGameFragment"
+        android:name="com.example.quizapp.View.PlayGameFragment"
+        android:label="fragment_play_game"
+        tools:layout="@layout/fragment_play_game" >
+        <action
+            android:id="@+id/action_playGameFragment_to_gameCompletedFragment"
+            app:destination="@id/gameCompletedFragment" />
+        <action
+            android:id="@+id/action_playGameFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameCompletedFragment"
+        android:name="com.example.quizapp.View.GameCompletedFragment"
+        android:label="fragment_game_completed"
+        tools:layout="@layout/fragment_game_completed" >
+        <action
+            android:id="@+id/action_gameCompletedFragment_to_leaderBoardFragment"
+            app:destination="@id/leaderBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderBoardFragment"
+        android:name="com.example.quizapp.View.LeaderBoardFragment"
+        android:label="fragment_leader_board"
+        tools:layout="@layout/fragment_leader_board" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.quizapp.View.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_changePassFragment"
+            app:destination="@id/changePassFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_updateProfileFragment"
+            app:destination="@id/updateProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePassFragment"
+        android:name="com.example.quizapp.View.ChangePassFragment"
+        android:label="fragment_change_pass"
+        tools:layout="@layout/fragment_change_pass" />
+    <fragment
+        android:id="@+id/updateProfileFragment"
+        android:name="com.example.quizapp.View.UpdateProfileFragment"
+        android:label="fragment_update_profile"
+        tools:layout="@layout/fragment_update_profile" />
+</navigation>

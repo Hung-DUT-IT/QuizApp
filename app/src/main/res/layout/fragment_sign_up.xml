@@ -70,13 +70,12 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:background="@android:color/transparent"
-                android:maxLines="1"
-                android:textColor="@color/white"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:layout_marginBottom="30dp"
@@ -86,7 +85,6 @@
                 android:id="@+id/edit_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="textPassword"
                 android:background="@android:color/transparent"
                 android:textColor="@color/white"
@@ -95,7 +93,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:layout_marginBottom="30dp"

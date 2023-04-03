@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.quizapp.R;
 
-public class ChooseCategoryFragment extends Fragment {
+public class ChangePassFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,6 @@ public class ChooseCategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_category, container, false);
+        return inflater.inflate(R.layout.fragment_change_pass, container, false);
     }
 }

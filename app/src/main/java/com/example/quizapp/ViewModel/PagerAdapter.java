@@ -5,10 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.quizapp.View.Boarding_SignUp;
-import com.example.quizapp.View.Login_SignUp_Option;
-import com.example.quizapp.View.SplashCreen;
-
 import java.util.List;
 
 
