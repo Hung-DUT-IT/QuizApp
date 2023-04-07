@@ -10,41 +10,29 @@
         android:background="#242A42"
         tools:context=".View.HomeFragment">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Quiz App"
-                android:textSize="48sp"
-                android:layout_marginLeft="60dp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textStyle="bold"/>
-
-            <ImageView
-                android:id="@+id/img_user"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:src="@drawable/user"/>
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_name_room"
+            android:layout_width="220dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Name Room"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="350dp"
             android:layout_height="90dp"
             android:layout_gravity="center|bottom"
-            android:layout_margin="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:cardBackgroundColor="#E78230"
-            app:cardCornerRadius="25dp"
+            app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
             app:strokeWidth="2dp">
 
@@ -62,13 +50,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Quiz App"
+                    android:text="Count user "
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="normal|italic" />
 
                 <TextView
-                    android:id="@+id/tv_count_question"
+                    android:id="@+id/tv_count_user"
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -101,13 +89,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Your Ranking"
+                    android:text="Game code"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="normal|italic" />
 
                 <TextView
-                    android:id="@+id/tv_rank"
+                    android:id="@+id/tv_game_code"
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -121,23 +109,36 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_category"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="410dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:cardBackgroundColor="#E78230"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:strokeWidth="2dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_user"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_category"
             android:layout_width="350dp"
             android:layout_height="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#2E425A"
-            android:layout_gravity="center"
-            android:text="Create Category"
+            android:text="@string/start"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:cornerRadius="25dp"/>
+            app:cornerRadius="20dp" />
     </LinearLayout>
 </layout>

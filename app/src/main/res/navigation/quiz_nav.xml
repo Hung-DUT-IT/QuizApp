@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_homeFragment_to_playGameFragment"
             app:destination="@id/playGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseCategoryFragment"
@@ -136,4 +139,18 @@
         android:name="com.example.quizapp.View.UpdateProfileFragment"
         android:label="fragment_update_profile"
         tools:layout="@layout/fragment_update_profile" />
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.example.quizapp.View.RoomFragment"
+        android:label="fragment_room"
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_roomFragment_to_playGameFragment"
+            app:destination="@id/playGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createOrJoinFragment"
+        android:name="com.example.quizapp.View.CreateOrJoinFragment"
+        android:label="fragment_create_or_join"
+        tools:layout="@layout/fragment_create_or_join" />
 </navigation>

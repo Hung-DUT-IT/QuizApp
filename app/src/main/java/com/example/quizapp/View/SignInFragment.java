@@ -2,6 +2,7 @@ package com.example.quizapp.View;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +16,15 @@ import androidx.navigation.Navigation;
 
 import com.example.quizapp.Model.Helper.FirebaseUtils;
 import com.example.quizapp.R;
+import com.example.quizapp.ViewModel.MySharedPreferences;
 import com.example.quizapp.databinding.FragmentSignInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignInFragment extends Fragment {
-
     private FragmentSignInBinding binding;
-
-    FirebaseUtils firebaseUtils = FirebaseUtils.getInstance();
-
     public SignInFragment() {
         // Required empty public constructor
     }
@@ -77,15 +76,11 @@ public class SignInFragment extends Fragment {
                     Toast.makeText(getContext(),"Please enter your password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                firebaseUtils.signIn(email, password, new OnCompleteListener<AuthResult>() {
+                FirebaseUtils.getInstance().signIn(email, password, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("category", question.getCategory());
-
-                            Toast.makeText(getContext(), "Sign in successful !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Sign in successful!", Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(view).navigate(R.id.homeFragment);
                         } else {
                             // If sign in fails, display a message to the user.

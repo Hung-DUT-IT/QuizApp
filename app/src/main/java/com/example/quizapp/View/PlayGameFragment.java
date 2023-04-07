@@ -46,14 +46,33 @@ public class PlayGameFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_play_game, container , false);
-        loadNextQuestion();
-        startCountDown();
         return binding.getRoot();
     }
 
-    private void loadNextQuestion() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        binding.tvCountQuestion.setText(String.format("%s/%d", String.valueOf(currentIndex), questions.size()));
+        loadNextQuestion();
+        countDownTimer = new CountDownTimer(30000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis = 0;
+                updateCountDownText();
+                finishQuiz();
+            }
+        }.start();
+
+    }
+
+    private void loadNextQuestion() {
+        binding.tvCountQuestion.setText(String.format("%s/%d", String.valueOf(score), questions.size()));
         currentIndex++;
         if (currentIndex >= questions.size()) {
             // Show the score
@@ -92,22 +111,6 @@ public class PlayGameFragment extends Fragment {
             button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CBDCE6")));
         }
         id.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#e78230")));
-    }
-    private void startCountDown() {
-        countDownTimer = new CountDownTimer(30000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
-
-            @Override
-            public void onFinish() {
-                timeLeftInMillis = 0;
-                updateCountDownText();
-                finishQuiz();
-            }
-        }.start();
     }
     private void checkAnswer(String answer){
         if (currentQuestion.getCorrect_answer().equals(answer)) {

@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignUpFragment extends Fragment {
 
     private FragmentSignUpBinding binding;
-    FirebaseUtils firebaseUtils = FirebaseUtils.getInstance();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +81,11 @@ public class SignUpFragment extends Fragment {
 
                 if(password.equals(confirmPass)){
 
-                    firebaseUtils.signUp(email, password, new OnCompleteListener<AuthResult>() {
+                    FirebaseUtils.getInstance().signUp(email, password, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            FirebaseUser user = firebaseUtils.getCurrentUser();
+                            FirebaseUser user = FirebaseUtils.getInstance().getCurrentUser();
                             if( user == null ){
                                 return;
                             }
@@ -96,7 +95,7 @@ public class SignUpFragment extends Fragment {
                                 String Uid = user.getUid();
                                 User u = new User(email2, password, Uid);
 
-                                firebaseUtils.getDataReference("Users").push().setValue(u);
+                                FirebaseUtils.getInstance().getDataReference("Users").push().setValue(u);
                             }
                             Toast.makeText(getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(view).navigate(R.id.signInFragment );
