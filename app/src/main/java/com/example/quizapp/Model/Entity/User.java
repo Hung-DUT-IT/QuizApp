@@ -1,9 +1,10 @@
 package com.example.quizapp.Model.Entity;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class User {
-    public String UID;
     public ArrayList<String> friendIDs;
     public String name;
     public String pass;
@@ -11,9 +12,7 @@ public class User {
     public int score;
     public String username;
 
-    public User(String id, ArrayList<String> friendIDs, String username,
-                String pass, String name, int prev_score, int score) {
-        this.UID = id;
+    public User(ArrayList<String> friendIDs, String username, String pass, String name, int prev_score, int score) {
         this.friendIDs = friendIDs;
         this.username = username;
         this.pass = pass;
@@ -21,38 +20,19 @@ public class User {
         this.prev_score = prev_score;
         this.score = score;
     }
-    public User(String username,String pass){
-        this.username = username;
-        this.pass = pass;
-        this.name = username;
-        this.prev_score = 0;
-        this.score = 0;
-
-    }
-
-    public User(String username,String pass, String UID){
-        this.UID = UID;
+    public User(@NonNull String username, String pass){
         this.friendIDs = new ArrayList<>();
-        this.name = "name";
+        this.username = username;
         this.pass = pass;
+        this.name = username.replace("@gmail.com", "");
         this.prev_score = 0;
         this.score = 0;
-        this.username = username;
+
     }
 
     public User(){
 
     }
-
-
-    public String getId() {
-        return UID;
-    }
-
-    public void setId(String id) {
-        this.UID = id;
-    }
-
     public ArrayList<String> getFriendIDs() {
         return friendIDs;
     }

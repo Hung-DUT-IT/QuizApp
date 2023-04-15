@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizapp.Model.Entity.Question;
-import com.example.quizapp.Model.Helper.FirebaseUtils;
+import com.example.quizapp.Model.Helper.FirebaseQuestion;
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.CategoryItemRowBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,7 +45,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUtils.getInstance().getQuestionsByCategory("questions",category).addOnCompleteListener(new OnCompleteListener<List<Question>>() {
+                FirebaseQuestion.getInstance().getQuestionsByCategory("questions",category).addOnCompleteListener(new OnCompleteListener<List<Question>>() {
                     @Override
                     public void onComplete(@NonNull Task<List<Question>> task) {
                         if (task.isSuccessful()) {
@@ -68,6 +68,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
                                     Bundle args = new Bundle();
                                     args.putSerializable("questions", (Serializable) questions);
+                                    args.putString("play", "alone" );
                                     Navigation.findNavController(v).navigate(R.id.playGameFragment, args);
                                 }
                             });
@@ -75,6 +76,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                                 @Override
                                 public void onClick(View view) {
                                     dialog.dismiss();
+
                                     Bundle args = new Bundle();
                                     args.putSerializable("questions", (Serializable) questions);
                                     Navigation.findNavController(v).navigate(R.id.createOrJoinFragment, args);

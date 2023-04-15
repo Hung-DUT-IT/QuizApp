@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:inputType="textPassword"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +42,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#E78230"
-            android:text="Create"
+            android:text="Join"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="50dp" />

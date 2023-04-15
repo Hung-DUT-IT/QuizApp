@@ -16,7 +16,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.example.quizapp.Model.Entity.Question;
-import com.example.quizapp.Model.Helper.FirebaseUtils;
+import com.example.quizapp.Model.Helper.FirebaseRoom;
+import com.example.quizapp.Model.Helper.FirebaseUsers;
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.FragmentPlayGameBinding;
 
@@ -28,12 +29,14 @@ import java.util.Locale;
 public class PlayGameFragment extends Fragment {
     private FragmentPlayGameBinding binding;
     private ArrayList<Button> buttons;
-    List<Question> questions;
+    private List<Question> questions;
     private Question currentQuestion;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis = 30000;
     private int currentIndex = 1;
     private int score = 0;
+    private String play;
+    private String roomCode;
     public PlayGameFragment() {
     }
     @Override
@@ -41,6 +44,8 @@ public class PlayGameFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             questions = (List<Question>) getArguments().getSerializable("questions");
+            play = getArguments().getString("play");
+            roomCode = getArguments().getString("roomCode");
         }
     }
     @Override
@@ -75,35 +80,33 @@ public class PlayGameFragment extends Fragment {
         binding.tvCountQuestion.setText(String.format("%s/%d", String.valueOf(score), questions.size()));
         currentIndex++;
         if (currentIndex >= questions.size()) {
-            // Show the score
-            Toast.makeText(getActivity(), "Your score is " + score, Toast.LENGTH_SHORT).show();
-            // Return to the previous fragment
-            requireActivity().getSupportFragmentManager().popBackStack();
-            return;
+            finishQuiz();
         }
-        currentQuestion = questions.get(currentIndex);
+        else{
+            currentQuestion = questions.get(currentIndex);
 
-        binding.tvQuestion.setText(currentQuestion.getQuestion());
+            binding.tvQuestion.setText(currentQuestion.getQuestion());
 
-        List<String> answers = currentQuestion.getIncorrect_answers();
-        answers.add(currentQuestion.getCorrect_answer());
-        Collections.shuffle(answers);
+            List<String> answers = currentQuestion.getIncorrect_answers();
+            answers.add(currentQuestion.getCorrect_answer());
+            Collections.shuffle(answers);
 
-        buttons = new ArrayList<>();
-        buttons.add(binding.btnQuestionA);
-        buttons.add(binding.btnQuestionB);
-        buttons.add(binding.btnQuestionC);
-        buttons.add(binding.btnQuestionD);
-        int position = 0;
-        for (Button button : buttons) {
-            button.setText(answers.get(position++));
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setColorButtonOneClick(buttons,button);
-                    checkAnswer(button.getText().toString());
-                }
-            });
+            buttons = new ArrayList<>();
+            buttons.add(binding.btnQuestionA);
+            buttons.add(binding.btnQuestionB);
+            buttons.add(binding.btnQuestionC);
+            buttons.add(binding.btnQuestionD);
+            int position = 0;
+            for (Button button : buttons) {
+                button.setText(answers.get(position++));
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setColorButtonOneClick(buttons,button);
+                        checkAnswer(button.getText().toString());
+                    }
+                });
+            }
         }
     }
     private void setColorButtonOneClick(ArrayList<Button> buttons, Button id){
@@ -123,16 +126,25 @@ public class PlayGameFragment extends Fragment {
     private void finishQuiz() {
         countDownTimer.cancel();
 
+
         Bundle bundle = new Bundle();
         bundle.putInt("score", score);
-
+        bundle.putString("play", play);
+        bundle.putString("roomCode", roomCode);
         GameCompletedFragment gameCompletedFragment = new GameCompletedFragment();
         gameCompletedFragment.setArguments(bundle);
-
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerView, gameCompletedFragment)
                 .addToBackStack(null)
                 .commit();
+
+
+        if(play.equals("alone")){
+            FirebaseUsers.getInstance().setScore(FirebaseUsers.getInstance().getIdUserCurrent(), score);
+        }
+        else{
+            FirebaseRoom.getInstance().setScore(roomCode, FirebaseUsers.getInstance().getIdUserCurrent(), score);
+        }
     }
     private void updateCountDownText() {
         int minutes = (int) (timeLeftInMillis / 1000) / 60;

@@ -8,4 +8,6 @@
     <string name="friend">Friend</string>
     <string name="play_alone">Play alone</string>
     <string name="play_with_friends">Play With Friends</string>
+    <string name="game_code">Game code</string>
+    <string name="count_user">Count user</string>
 </resources>

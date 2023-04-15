@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:orientation="vertical">
 
                 <TextView
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Count user "
+                    android:text="@string/count_user"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="normal|italic" />
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:orientation="vertical">
 
                 <TextView
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Game code"
+                    android:text="@string/game_code"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="normal|italic" />
@@ -109,27 +109,15 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_user"
             android:layout_width="match_parent"
-            android:layout_height="410dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            app:cardBackgroundColor="#E78230"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:strokeWidth="2dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_user"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp" />
-        </com.google.android.material.card.MaterialCardView>
-
-
+            android:layout_height="430dp"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_category"
+            android:id="@+id/btn_start_game"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:layout_gravity="center"

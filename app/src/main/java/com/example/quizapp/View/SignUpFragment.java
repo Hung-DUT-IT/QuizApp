@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.quizapp.Model.Entity.User;
-import com.example.quizapp.Model.Helper.FirebaseUtils;
+import com.example.quizapp.Model.Helper.FirebaseUsers;
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.FragmentSignUpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -80,12 +80,10 @@ public class SignUpFragment extends Fragment {
                     }
 
                 if(password.equals(confirmPass)){
-
-                    FirebaseUtils.getInstance().signUp(email, password, new OnCompleteListener<AuthResult>() {
+                    FirebaseUsers.getInstance().signUp(email, password, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            FirebaseUser user = FirebaseUtils.getInstance().getCurrentUser();
+                            FirebaseUser user = FirebaseUsers.getInstance().getCurrentUser();
                             if( user == null ){
                                 return;
                             }
@@ -93,9 +91,9 @@ public class SignUpFragment extends Fragment {
                                 Toast.makeText(getContext(), "Loading data", Toast.LENGTH_SHORT).show();
                                 String email2 = user.getEmail();
                                 String Uid = user.getUid();
-                                User u = new User(email2, password, Uid);
+                                User u = new User(email2, password);
 
-                                FirebaseUtils.getInstance().getDataReference("Users").push().setValue(u);
+                                FirebaseUsers.getInstance().addUser(Uid, u);
                             }
                             Toast.makeText(getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(view).navigate(R.id.signInFragment );
