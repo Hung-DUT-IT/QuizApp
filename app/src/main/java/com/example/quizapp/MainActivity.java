@@ -1,21 +1,27 @@
 package com.example.quizapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 
-import com.example.quizapp.View.Boarding_SignUp;
-import com.example.quizapp.View.Login_SignUp_Option;
-import com.example.quizapp.View.SplashCreen;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.quizapp.databinding.ActivityMainBinding;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager= getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
+        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName()) ;
+        fragmentTransaction.commit();
     }
 }

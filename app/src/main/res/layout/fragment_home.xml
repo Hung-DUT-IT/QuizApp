@@ -129,16 +129,16 @@
             android:layout_marginRight="20dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_category"
+            android:id="@+id/btn_add_quiz"
             android:layout_width="350dp"
             android:layout_height="70dp"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#2E425A"
-            android:layout_gravity="center"
-            android:text="Create Category"
+            android:text="Create Quiz"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:cornerRadius="20dp"/>
+            app:cornerRadius="20dp" />
     </LinearLayout>
 </layout>

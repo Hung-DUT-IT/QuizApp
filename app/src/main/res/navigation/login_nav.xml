@@ -95,7 +95,14 @@
         tools:layout="@layout/fragment_choose_category" >
         <action
             android:id="@+id/action_chooseCategoryFragment_to_createQuizFragment"
-            app:destination="@id/createQuizFragment" />
+            app:destination="@id/fragmentPagerCreatingQuiz" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPagerCreatingQuiz"
+        android:name="com.example.quizapp.View.PagerCreatingQuizFragment"
+        android:label="fragment_pager_creatingquiz"
+        tools:layout="@layout/fragment_pager_creating_quiz"
+        >
     </fragment>
     <fragment
         android:id="@+id/playGameFragment"

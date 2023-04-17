@@ -66,4 +66,18 @@ public class Question {
         this.correct_answer = correct_answer;
         this.incorrect_answers = incorrect_answers;
     }
+    public Question()
+    {}
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", question='" + question + '\'' +
+                ", correct_answer='" + correct_answer + '\'' +
+                ", incorrect_answers=" + incorrect_answers + "\n"+
+                '}';
+    }
 }

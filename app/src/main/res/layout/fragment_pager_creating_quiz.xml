@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center">
 
             <ImageView
@@ -28,52 +28,34 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-35dp"
                 android:layout_gravity="center_horizontal|center_vertical|right"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Choose Category"
+                android:text="Create Quiz"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="380dp"
-            android:layout_height="600dp"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="382dp"
+            android:layout_height="500dp"
             android:layout_gravity="center|bottom"
-            android:layout_margin="30dp"
-            app:cardBackgroundColor="#CBDCE6"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:strokeWidth="2dp">
+            android:layout_margin="10dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_category"
-                android:layout_width="360dp"
-                android:layout_height="510dp"
-                android:layout_gravity="center|top"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
+        </androidx.viewpager2.widget.ViewPager2>
 
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_next"
-                android:layout_width="350dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:backgroundTint="#2E425A"
-                android:layout_gravity="bottom|center"
-                android:text="Next"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:cornerRadius="20dp"/>
-        </com.google.android.material.card.MaterialCardView>
-
-
-
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_upload_questions"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|center"
+            android:backgroundTint="#2E425A"
+            android:text="Upload"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
 
     </LinearLayout>
 </layout>

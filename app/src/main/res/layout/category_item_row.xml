@@ -2,14 +2,17 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="350dp"
         android:layout_height="70dp"
         app:cardBackgroundColor="#30445C"
+
         android:elevation="8dp"
         app:cardCornerRadius="20dp"
+        android:id="@+id/cv_category"
         app:cardElevation="36dp">
 
         <LinearLayout
@@ -18,6 +21,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
+
             android:visibility="visible">
 
 

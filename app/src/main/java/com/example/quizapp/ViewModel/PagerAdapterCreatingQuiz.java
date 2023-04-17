@@ -1,0 +1,36 @@
+package com.example.quizapp.ViewModel;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.quizapp.View.CreateQuizFragment;
+
+import java.util.List;
+
+public class PagerAdapterCreatingQuiz extends FragmentStateAdapter  {
+
+
+    public List<CreateQuizFragment> fragmentList;
+
+    public PagerAdapterCreatingQuiz(@NonNull FragmentActivity fragmentActivity, List<CreateQuizFragment> fragmentList) {
+        super(fragmentActivity);
+        this.fragmentList = fragmentList;
+    }
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+
+                return fragmentList.get(position);
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return 10;
+    }
+
+
+}
+
