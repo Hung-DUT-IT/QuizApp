@@ -57,6 +57,13 @@ public class SignInFragment extends Fragment {
             }
         });
 
+        binding.tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         binding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
