@@ -53,6 +53,8 @@ public class HomeFragment extends Fragment {
             public void onComplete(@NonNull Task<User> task) {
                 if (task.isSuccessful()) {
                     User user = task.getResult();
+                    binding.tvRank.setText(user.getPrev_score());
+                    binding.tvCountQuestion.setText(user.getScore());
                 }
                 else {
                     Exception ex = task.getException();
@@ -71,7 +73,10 @@ public class HomeFragment extends Fragment {
         binding.imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.settingsFragment);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new SettingsFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -86,12 +91,6 @@ public class HomeFragment extends Fragment {
                 else{
                     Exception ex = task.getException();
                 }
-            }
-        });
-        binding.imgUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.settingsFragment);
             }
         });
     }

@@ -116,6 +116,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_out"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|center"
@@ -124,8 +125,8 @@
             android:layout_marginLeft="30dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="#2E425A"
-            android:text="Next"
-            android:textSize="16dp"
+            android:text="@string/sign_out"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="20dp" />
     </LinearLayout>
