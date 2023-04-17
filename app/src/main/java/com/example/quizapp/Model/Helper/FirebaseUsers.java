@@ -1,5 +1,7 @@
 package com.example.quizapp.Model.Helper;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.example.quizapp.Model.Entity.Room;
@@ -51,7 +53,8 @@ public class FirebaseUsers {
     public com.google.firebase.auth.FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
     }
-    public void getUserByID(String id, final FirebaseUsers.UserCallback callback){
+    public void getUserByID(String id, final FirebaseUsers.UserCallback callback)
+    {
         Query query = mDatabase.getReference("Users").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -69,25 +72,55 @@ public class FirebaseUsers {
             }
         });
     }
-    public Task<User> getUserByID(String id){
-        TaskCompletionSource<User> tcs = new TaskCompletionSource<>();
-        mDatabase.getReference("Users").child(id).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tcs.setResult(snapshot.getValue(User.class));
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                tcs.setException(error.toException());
-            }
-        });
-        return tcs.getTask();
-    }
+//    public Task<User> getUserByID(String id){
+//        TaskCompletionSource<User> tcs = new TaskCompletionSource<>();
+//        mDatabase.getReference("Users").child(id).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                tcs.setResult(snapshot.getValue(User.class));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                tcs.setException(error.toException());
+//            }
+//        });
+//        return tcs.getTask();
+//    }
+public Task<User> getUserByID(String id){
+    TaskCompletionSource<User> tcs = new TaskCompletionSource<>();
+    mDatabase.getReference("Users").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            tcs.setResult(snapshot.getValue(User.class));
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            tcs.setException(error.toException());
+        }
+    });
+    return tcs.getTask();
+}
     public void setScore(String Uid, int score){
         mDatabase.getReference("Users").child(Uid).child("score").setValue(score);
     }
     public interface UserCallback {
         void onUserReceived(User user);
     }
+
+
+    public void setPass(String Uid, String pass){
+        mDatabase.getReference("Users").child(Uid).child("pass").setValue(pass);
+    }
+
+    public void changePass(String newpass, OnCompleteListener<Void> listener){
+        mAuth.getCurrentUser().updatePassword(newpass).addOnCompleteListener(listener);
+    }
+
+    public void setupdate(String Uid, String name){
+        mDatabase.getReference("Users").child(Uid).child("name").setValue(name);
+    }
+
 }

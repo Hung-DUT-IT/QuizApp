@@ -53,8 +53,9 @@ public class HomeFragment extends Fragment {
             public void onComplete(@NonNull Task<User> task) {
                 if (task.isSuccessful()) {
                     User user = task.getResult();
-                    binding.tvRank.setText(user.getPrev_score());
-                    binding.tvCountQuestion.setText(user.getScore());
+
+                    binding.tvRank.setText(String.valueOf(user.getPrev_score()));
+                    binding.tvCountQuestion.setText(String.valueOf(user.getScore()));
                 }
                 else {
                     Exception ex = task.getException();

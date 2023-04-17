@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.quizapp.Model.Helper.FirebaseUsers;
 import com.example.quizapp.R;
@@ -37,6 +38,10 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseUsers.getInstance().signOut();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new SignInFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         binding.imgRightProfile.setOnClickListener(new View.OnClickListener() {

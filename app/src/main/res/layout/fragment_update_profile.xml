@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:background="#242A42">
+        android:background="#242A42"
+        tools:context=".View.UpdateProfileFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,13 +149,23 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="20dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/user"/>
 
                 <TextView
-                    android:id="@+id/tv_name_user"
-                    android:layout_width="190dp"
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name:  "
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="5sp"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="normal|bold"/>
+                <EditText
+                    android:id="@+id/edt_name_user"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="name"
@@ -194,7 +205,28 @@
                     android:src="@drawable/envelope"/>
 
                 <TextView
-                    android:id="@+id/tv_mail"
+                    android:id="@+id/tv_mail1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email:  "
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="5sp"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="normal|bold"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_mail"-->
+<!--                    android:layout_width="190dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:text="mail"-->
+<!--                    android:gravity="center_horizontal|center_vertical"-->
+<!--                    android:lineSpacingExtra="5sp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="normal|bold"/>-->
+                <TextView
+                    android:id="@+id/edt_mail"
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -206,6 +238,17 @@
                     android:textStyle="normal|bold"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_change"
+            android:layout_width="280dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="#2E425A"
+            android:layout_gravity="center"
+            android:text="Change"
+            app:cornerRadius="20dp"/>
 
     </LinearLayout>
 </layout>

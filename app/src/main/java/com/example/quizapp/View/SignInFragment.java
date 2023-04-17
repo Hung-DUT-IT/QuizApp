@@ -86,6 +86,7 @@ public class SignInFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(), "Sign in successful!", Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(view).navigate(R.id.homeFragment);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(getContext(), "Authentication failed !", Toast.LENGTH_SHORT).show();
