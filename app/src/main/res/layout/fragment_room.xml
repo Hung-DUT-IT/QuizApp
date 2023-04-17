@@ -12,8 +12,8 @@
 
         <TextView
             android:id="@+id/tv_name_room"
-            android:layout_width="220dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -112,7 +112,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_user"
             android:layout_width="match_parent"
-            android:layout_height="430dp"
+            android:layout_height="400dp"
             android:layout_gravity="center|center_horizontal"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp" />
