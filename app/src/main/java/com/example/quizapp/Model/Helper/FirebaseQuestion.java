@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseQuestion {
     private static FirebaseQuestion instance;
@@ -70,5 +71,34 @@ public class FirebaseQuestion {
             }
         });
         return tcs.getTask();
+    }
+    public void addQuestion(String category, String position, Question question){
+        mDatabase.getReference("QuestionByUser").child(category).child(position).setValue(question);
+    }
+    public void getCategoryByUser(FirebaseQuestion.CategoryCallback categoryCallback){
+        mDatabase.getReference("QuestionByUser").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if( snapshot.exists()){
+                    List<String> categoryList = new ArrayList<>();
+                    for (DataSnapshot categorySnapshot : snapshot.getChildren()) {
+                        String category = categorySnapshot.getKey();
+                        categoryList.add(category);
+                    }
+                    categoryCallback.onQuestionCategory(categoryList);
+                }
+                else{
+                    categoryCallback.onQuestionCategory(new ArrayList<>());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    public interface CategoryCallback {
+        void onQuestionCategory(List<String> categories);
     }
 }

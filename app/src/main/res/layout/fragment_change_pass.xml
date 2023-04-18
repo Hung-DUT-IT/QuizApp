@@ -93,7 +93,6 @@
                 android:id="@+id/edit_new_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="textPassword"
                 android:background="@android:color/transparent"
                 android:textColor="@color/white"

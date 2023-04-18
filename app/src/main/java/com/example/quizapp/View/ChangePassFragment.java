@@ -84,61 +84,45 @@ public class ChangePassFragment extends Fragment {
                     return;
                 }
                 if(!newpass.equals(cfpass)){
-                    Toast.makeText(getContext(),"The cofirm password must be the same as the new password",
+                    Toast.makeText(getContext(),"The confirm password must be the same as the new password",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                FirebaseUsers.getInstance().getUserByID(FirebaseUsers.getInstance().getIdUserCurrent()).addOnCompleteListener(new OnCompleteListener<User>() {
+                FirebaseUsers.getInstance().getUserByID(FirebaseUsers.getInstance().getIdUserCurrent(), new FirebaseUsers.UserCallback() {
                     @Override
-                    public void onComplete(@NonNull Task<User> task) {
-                        if (task.isSuccessful()) {
-                            User user = task.getResult();
-                            String fpass = String.valueOf(user.getPass());
-                            String Uid = FirebaseUsers.getInstance().getIdUserCurrent();
+                    public void onUserReceived(User user) {
+                        String fpass = String.valueOf(user.getPass());
+                        String Uid = FirebaseUsers.getInstance().getIdUserCurrent();
 
 
-                            if(lpass.equals(fpass)){
+                        if(lpass.equals(fpass)){
 
-                                FirebaseUsers.getInstance().changePass(newpass, new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            FirebaseUsers.getInstance().setPass(Uid,newpass);
-                                            Toast.makeText(getContext(),"Change password successfull !",
-                                                    Toast.LENGTH_SHORT).show();
-                                            getActivity().getSupportFragmentManager().beginTransaction()
+                            FirebaseUsers.getInstance().changePass(newpass, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        FirebaseUsers.getInstance().setPass(Uid,newpass);
+                                        Toast.makeText(getContext(),"Change password successfully !", Toast.LENGTH_SHORT).show();
+                                        getActivity().getSupportFragmentManager().beginTransaction()
                                                 .replace(R.id.fragmentContainerView, new SettingsFragment())
                                                 .addToBackStack(null)
                                                 .commit();
-//                                            Navigation.findNavController(view).navigate(R.id.settingsFragment);
-                                        }
-                                        else {
-                                            Toast.makeText(getContext(),"Change pass failed",
-                                                    Toast.LENGTH_SHORT).show();
-                                            binding.editLastPass.setText("");
-                                            binding.editNewPass.setText("");
-                                            binding.editConfirmPass.setText("");
-                                        }
-
                                     }
-                                });
+                                    else {
+                                        Toast.makeText(getContext(),"Change pass failed",
+                                                Toast.LENGTH_SHORT).show();
+                                        binding.editLastPass.setText("");
+                                        binding.editNewPass.setText("");
+                                        binding.editConfirmPass.setText("");
+                                    }
+
+                                }
+                            });
 
 
-                            }
-                        }
-                        else {
-                            Exception ex = task.getException();
                         }
                     }
                 });
-
-
-
-
-
-
-
             }
         });
     }

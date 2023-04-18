@@ -63,7 +63,9 @@ public class FirebaseUsers {
                     User user = snapshot.getValue(User.class);
                     callback.onUserReceived(user);
                 }
-//                callback.onUserReceived(new User());
+                else{
+                    callback.onUserReceived(new User());
+                }
             }
 
             @Override
@@ -72,54 +74,21 @@ public class FirebaseUsers {
             }
         });
     }
-
-//    public Task<User> getUserByID(String id){
-//        TaskCompletionSource<User> tcs = new TaskCompletionSource<>();
-//        mDatabase.getReference("Users").child(id).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                tcs.setResult(snapshot.getValue(User.class));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                tcs.setException(error.toException());
-//            }
-//        });
-//        return tcs.getTask();
-//    }
-public Task<User> getUserByID(String id){
-    TaskCompletionSource<User> tcs = new TaskCompletionSource<>();
-    mDatabase.getReference("Users").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            tcs.setResult(snapshot.getValue(User.class));
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-            tcs.setException(error.toException());
-        }
-    });
-    return tcs.getTask();
-}
     public void setScore(String Uid, int score){
         mDatabase.getReference("Users").child(Uid).child("score").setValue(score);
     }
     public interface UserCallback {
         void onUserReceived(User user);
     }
-
-
     public void setPass(String Uid, String pass){
         mDatabase.getReference("Users").child(Uid).child("pass").setValue(pass);
     }
 
-    public void changePass(String newpass, OnCompleteListener<Void> listener){
-        mAuth.getCurrentUser().updatePassword(newpass).addOnCompleteListener(listener);
+    public void changePass(String newPass, OnCompleteListener<Void> listener){
+        mAuth.getCurrentUser().updatePassword(newPass).addOnCompleteListener(listener);
     }
 
-    public void setupdate(String Uid, String name){
+    public void setUpdate(String Uid, String name){
         mDatabase.getReference("Users").child(Uid).child("name").setValue(name);
     }
 

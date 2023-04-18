@@ -48,11 +48,12 @@ public class SignUpFragment extends Fragment {
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.pagerFragment);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new PagerFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
-
-
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,16 +97,16 @@ public class SignUpFragment extends Fragment {
                                 FirebaseUsers.getInstance().addUser(Uid, u);
                             }
                             Toast.makeText(getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
-                            Navigation.findNavController(view).navigate(R.id.signInFragment );
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragmentContainerView, new SignInFragment())
+                                    .addToBackStack(null)
+                                    .commit();
                         }
                     });
                 }else {
                     Toast.makeText(getContext(),"Incorrect password authentication !!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
             }
         });
     }

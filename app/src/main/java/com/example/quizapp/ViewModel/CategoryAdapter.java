@@ -1,6 +1,5 @@
 package com.example.quizapp.ViewModel;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
-    private List<String> questions;
+    private final List<String> questions;
 
     public CategoryAdapter(List<String> questions) {
         this.questions = questions;
@@ -42,6 +41,39 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String category = questions.get(position);
         holder.binding.tvNameCategory.setText(category);
+        switch (category)
+        {
+            case "Science":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.science);
+                break;
+            case "Film & TV":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.film);
+                break;
+            case "Society & Culture":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.society);
+                break;
+            case "Food & Drink":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.food);
+                break;
+            case "History":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.history);
+                break;
+            case "General Knowledge":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.generaknowledge);
+                break;
+            case "Sport & Leisure":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.sport);
+                break;
+            case "Geography":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.geography);
+                break;
+            case "Music":
+                holder.binding.imgIconCategory.setImageResource(R.drawable.music);
+                break;
+            default:
+                holder.binding.imgIconCategory.setImageResource(R.drawable.art);
+                break;
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

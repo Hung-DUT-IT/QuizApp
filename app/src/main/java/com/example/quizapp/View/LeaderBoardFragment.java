@@ -72,27 +72,21 @@ public class LeaderBoardFragment extends Fragment {
                 idUsers = sortHashMapByValues(room.getIdPlayers());
                 int count = 0;
                 for (String id : idUsers) {
-                    FirebaseUsers.getInstance().getUserByID(id).addOnCompleteListener(new OnCompleteListener<User>() {
+                    FirebaseUsers.getInstance().getUserByID(id, new FirebaseUsers.UserCallback() {
                         @Override
-                        public void onComplete(@NonNull Task<User> task) {
-                            if (task.isSuccessful()) {
-                                User user =task.getResult();
-                                users.add(user);
+                        public void onUserReceived(User user) {
+                            users.add(user);
 
-                                if (users.size() == 1){
-                                    binding.tvUsernameTop1.setText(users.get(users.size()).getName());
-                                }
-                                else if (users.size() == 2){
-                                    binding.tvUsernameTop2.setText(users.get(users.size()).getName());
-                                }
-                                else if (users.size() == 3){
-                                    binding.tvUsernameTop3.setText(users.get(users.size()).getName());
-                                }
-
-                                binding.tvUsernameTop1.setText(users.get(users.size()).getName());
-
-                                userAdapter.notifyDataSetChanged();
+                            if (users.size() == 1){
+                                binding.tvUsernameTop1.setText(users.get(0).getName());
                             }
+                            else if (users.size() == 2){
+                                binding.tvUsernameTop2.setText(users.get(users.size() -1).getName());
+                            }
+                            else if (users.size() == 3){
+                                binding.tvUsernameTop3.setText(users.get(users.size() -1 ).getName());
+                            }
+                            userAdapter.notifyDataSetChanged();
                         }
                     });
                 }

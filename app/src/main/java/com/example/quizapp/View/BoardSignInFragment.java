@@ -37,13 +37,19 @@ public class BoardSignInFragment extends Fragment {
         binding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.signInFragment);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new SignInFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.signUpFragment);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new SignUpFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

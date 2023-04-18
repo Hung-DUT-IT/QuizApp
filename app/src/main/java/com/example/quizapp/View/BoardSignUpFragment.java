@@ -38,14 +38,20 @@ public class BoardSignUpFragment extends Fragment {
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.signUpFragment);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new SignUpFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         binding.tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.signInFragment);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new SignInFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

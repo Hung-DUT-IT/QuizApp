@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Question implements Serializable {
-    public String category;
-    public String type;
-    public String difficulty;
-    public String question;
-    public String correctAnswer;
-    public ArrayList<String> incorrectAnswers;
+    private String category;
+    private String type;
+    private String difficulty;
+    private String question;
+    private String correctAnswer;
+    private ArrayList<String> incorrectAnswers;
 
     public String getCategory() {
         return category;

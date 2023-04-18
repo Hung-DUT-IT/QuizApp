@@ -39,21 +39,13 @@ public class UpdateProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        FirebaseUsers.getInstance().getUserByID(FirebaseUsers.getInstance().getIdUserCurrent()).addOnCompleteListener(new OnCompleteListener<User>() {
+        FirebaseUsers.getInstance().getUserByID(FirebaseUsers.getInstance().getIdUserCurrent(), new FirebaseUsers.UserCallback() {
             @Override
-            public void onComplete(@NonNull Task<User> task) {
-                if (task.isSuccessful()) {
-                    User user = task.getResult();
-
-                    binding.tvRank.setText(String.valueOf(user.getPrev_score()));
-                    binding.tvCountQuestion.setText(String.valueOf(user.getScore()));
-                    binding.edtMail.setText(String.valueOf(user.getUsername()));
-                    binding.edtNameUser.setText(String.valueOf(user.getName()));
-                }
-                else {
-                    Exception ex = task.getException();
-                }
+            public void onUserReceived(User user) {
+                binding.tvRank.setText(String.valueOf(user.getPrev_score()));
+                binding.tvCountQuestion.setText(String.valueOf(user.getScore()));
+                binding.edtMail.setText(String.valueOf(user.getUsername()));
+                binding.edtNameUser.setText(String.valueOf(user.getName()));
             }
         });
 
@@ -62,7 +54,7 @@ public class UpdateProfileFragment extends Fragment {
             public void onClick(View v) {
                 String id = FirebaseUsers.getInstance().getIdUserCurrent();
                 String name = String.valueOf(binding.edtNameUser.getText());
-                FirebaseUsers.getInstance().setupdate(id,name);
+                FirebaseUsers.getInstance().setUpdate(id,name);
                 Toast.makeText(getContext(),"Change name successfull !",
                         Toast.LENGTH_SHORT).show();
 //                getActivity().getSupportFragmentManager().beginTransaction()

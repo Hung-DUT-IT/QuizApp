@@ -153,4 +153,9 @@
         android:name="com.example.quizapp.View.CreateOrJoinFragment"
         android:label="fragment_create_or_join"
         tools:layout="@layout/fragment_create_or_join" />
+    <fragment
+        android:id="@+id/pagerCreateQuestionFragment"
+        android:name="com.example.quizapp.View.PagerCreateQuestionFragment"
+        android:label="fragment_pager_create_question"
+        tools:layout="@layout/fragment_pager_create_question" />
 </navigation>

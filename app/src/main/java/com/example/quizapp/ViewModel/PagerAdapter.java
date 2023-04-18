@@ -9,9 +9,7 @@ import java.util.List;
 
 
 public class PagerAdapter  extends FragmentStateAdapter {
-
-    List<Fragment> fragmentList;
-
+    private List<Fragment> fragmentList;
     public PagerAdapter(@NonNull FragmentActivity fragmentActivity, List<Fragment> fragmentList) {
         super(fragmentActivity);
         this.fragmentList = fragmentList;
@@ -20,13 +18,7 @@ public class PagerAdapter  extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position == 0) {
-            return fragmentList.get(0);
-        } else if (position == 1) {
-            return fragmentList.get(1);
-        } else {
-            return fragmentList.get(2);
-        }
+        return fragmentList.get(position);
     }
 
     @Override
