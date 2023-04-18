@@ -1,5 +1,7 @@
 package com.example.quizapp.ViewModel;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.quizapp.Model.Entity.Question;
 import com.example.quizapp.Model.Helper.FirebaseQuestion;
 import com.example.quizapp.R;
+import com.example.quizapp.View.CreateOrJoinFragment;
+import com.example.quizapp.View.GameCompletedFragment;
+import com.example.quizapp.View.PlayGameFragment;
 import com.example.quizapp.databinding.CategoryItemRowBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,9 +31,10 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
     private final List<String> questions;
-
-    public CategoryAdapter(List<String> questions) {
+    private Context mContext;
+    public CategoryAdapter(List<String> questions, Context context) {
         this.questions = questions;
+        this.mContext = context;
     }
 
     @NonNull
@@ -98,10 +105,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                                 public void onClick(View view) {
                                     dialog.dismiss();
 
-                                    Bundle args = new Bundle();
-                                    args.putSerializable("questions", (Serializable) questions);
-                                    args.putString("play", "alone" );
-                                    Navigation.findNavController(v).navigate(R.id.playGameFragment, args);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("questions", (Serializable) questions);
+                                    bundle.putString("play", "alone" );
+
+                                    PlayGameFragment playGameFragment = new PlayGameFragment();
+                                    playGameFragment.setArguments(bundle);
+                                    ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.fragmentContainerView, playGameFragment)
+                                            .addToBackStack(null)
+                                            .commit();
                                 }
                             });
                             btnPlayFriends.setOnClickListener(new View.OnClickListener() {
@@ -109,9 +122,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                                 public void onClick(View view) {
                                     dialog.dismiss();
 
-                                    Bundle args = new Bundle();
-                                    args.putSerializable("questions", (Serializable) questions);
-                                    Navigation.findNavController(v).navigate(R.id.createOrJoinFragment, args);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("questions", (Serializable) questions);
+
+                                    CreateOrJoinFragment createOrJoinFragment = new CreateOrJoinFragment();
+                                    createOrJoinFragment.setArguments(bundle);
+                                    ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.fragmentContainerView, createOrJoinFragment)
+                                            .addToBackStack(null)
+                                            .commit();
                                 }
                             });
                             dialog.show();

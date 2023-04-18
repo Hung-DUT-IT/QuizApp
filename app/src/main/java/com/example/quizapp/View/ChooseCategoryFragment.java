@@ -45,7 +45,7 @@ public class ChooseCategoryFragment extends Fragment {
 
         binding.rvCategory.setHasFixedSize(true);
         binding.rvCategory.setLayoutManager(new LinearLayoutManager(getActivity()));
-        categoryAdapter = new CategoryAdapter(categoryList);
+        categoryAdapter = new CategoryAdapter(categoryList, getActivity());
         binding.rvCategory.setAdapter(categoryAdapter);
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,11 +85,10 @@ public class PlayGameFragment extends Fragment {
         }
         else{
             currentQuestion = questions.get(currentIndex);
-
             binding.tvQuestion.setText(currentQuestion.getQuestion());
 
-            List<String> answers = currentQuestion.getIncorrect_answers();
-            answers.add(currentQuestion.getCorrect_answer());
+            List<String> answers = currentQuestion.getIncorrectAnswers();
+            answers.add(currentQuestion.getCorrectAnswer());
             Collections.shuffle(answers);
 
             buttons = new ArrayList<>();
@@ -116,7 +116,7 @@ public class PlayGameFragment extends Fragment {
         id.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#e78230")));
     }
     private void checkAnswer(String answer){
-        if (currentQuestion.getCorrect_answer().equals(answer)) {
+        if (currentQuestion.getCorrectAnswer().equals(answer)) {
             score++;
         } else {
             score = 0;
@@ -125,7 +125,6 @@ public class PlayGameFragment extends Fragment {
     }
     private void finishQuiz() {
         countDownTimer.cancel();
-
 
         Bundle bundle = new Bundle();
         bundle.putInt("score", score);

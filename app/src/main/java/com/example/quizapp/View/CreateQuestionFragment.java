@@ -97,32 +97,32 @@ public class CreateQuestionFragment extends Fragment {
                 switch (checked)
                 {
                     case 0:
-                        question.setCorrect_answer(binding.tvAnswerA.getText().toString());
+                        question.setCorrectAnswer(binding.tvAnswerA.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerD.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerB.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerC.getText().toString());
-                        question.setIncorrect_answers(incorrectAnswers);
+                        question.setIncorrectAnswers(incorrectAnswers);
                         break;
                     case 1:
-                        question.setCorrect_answer(binding.tvAnswerB.getText().toString());;
+                        question.setCorrectAnswer(binding.tvAnswerB.getText().toString());;
                         incorrectAnswers.add(binding.tvAnswerA.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerD.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerC.getText().toString());
-                        question.setIncorrect_answers(incorrectAnswers);
+                        question.setIncorrectAnswers(incorrectAnswers);
                         break;
                     case 2:
-                        question.setCorrect_answer(binding.tvAnswerC.getText().toString());
+                        question.setCorrectAnswer(binding.tvAnswerC.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerA.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerB.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerD.getText().toString());
-                        question.setIncorrect_answers(incorrectAnswers);
+                        question.setIncorrectAnswers(incorrectAnswers);
                         break;
                     default:
-                        question.setCorrect_answer(binding.tvAnswerD.getText().toString());
+                        question.setCorrectAnswer(binding.tvAnswerD.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerA.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerB.getText().toString());
                         incorrectAnswers.add(binding.tvAnswerC.getText().toString());
-                        question.setIncorrect_answers(incorrectAnswers);
+                        question.setIncorrectAnswers(incorrectAnswers);
                         break;
                 }
                 questionList.put(questionNumber, question);

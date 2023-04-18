@@ -67,10 +67,10 @@ public class HomeFragment extends Fragment {
         binding.rvCategoryUser.setLayoutManager(new LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL, false));
 
 
-        categoryAdapter = new CategoryAdapter(categoryList);
+        categoryAdapter = new CategoryAdapter(categoryList, getActivity());
         binding.rvCategory.setAdapter(categoryAdapter);
 
-        categoryByUserAdapter = new CategoryAdapter(categoryListByUser);
+        categoryByUserAdapter = new CategoryAdapter(categoryListByUser, getActivity());
         binding.rvCategoryUser.setAdapter(categoryByUserAdapter);
 
         binding.imgUser.setOnClickListener(new View.OnClickListener() {

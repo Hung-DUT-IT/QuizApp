@@ -45,14 +45,17 @@ public class GameCompletedFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.tvSumCountQuestion.setText(String.format("%dScore", score));
-        binding.tvConclusion.setText(String.format("You try 50 questions within three minutes and answer %dquestions correctly", score));
+        binding.tvSumCountQuestion.setText(String.format("Score: %d", score));
+        binding.tvConclusion.setText(String.format("You try 50 questions within three minutes and answer %d questions correctly", score));
 
         binding.imgBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(play.equals("alone")){
-                    return;
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerView, new HomeFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
                 else{
 
