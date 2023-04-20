@@ -77,20 +77,18 @@ public class FirebaseRoom {
     public void startGame(String roomCode){
         mDatabase.getReference("Rooms").child(roomCode).child("start").setValue(true);
     }
-    public Task<Boolean> checkStartGame(String roomCode){
-        TaskCompletionSource<Boolean> tcs = new TaskCompletionSource<>();
+    public void checkStartGame(String roomCode, FirebaseRoom.StartCallback startCallback){
         mDatabase.getReference("Rooms").child(roomCode).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     if (Boolean.TRUE.equals(snapshot.child("start").getValue(Boolean.class))) {
-                        tcs.setResult(true);
-
+                        startCallback.onRoomStart(true);
                     }
                 }
                 else
                 {
-                    tcs.setResult(false);
+                   startCallback.onRoomStart(false);
                 }
             }
 
@@ -99,9 +97,7 @@ public class FirebaseRoom {
 
             }
         });
-        return tcs.getTask();
     }
-
     public void getRoomById(String roomCode, final FirebaseRoom.RoomCallback callback) {
         Query query = mDatabase.getReference("Rooms").child(roomCode);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -128,5 +124,8 @@ public class FirebaseRoom {
     }
     public interface AllowCallback {
         void onRoomAllow(Boolean allow);
+    }
+    public interface StartCallback{
+        void onRoomStart(Boolean started);
     }
 }

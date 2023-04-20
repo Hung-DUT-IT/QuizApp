@@ -87,28 +87,22 @@ public class RoomFragment extends Fragment {
                 });
             }
         });
-        FirebaseRoom.getInstance().checkStartGame(roomCode).addOnCompleteListener(new OnCompleteListener<Boolean>() {
+        FirebaseRoom.getInstance().checkStartGame(roomCode, new FirebaseRoom.StartCallback() {
             @Override
-            public void onComplete(@NonNull Task<Boolean> task) {
-                if (task.isSuccessful()) {
-                    Boolean started = task.getResult();
-                    if (started){
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("questions", (Serializable) questions);
-                        bundle.putString("play", "friends");
-                        bundle.putString("roomCode", roomCode);
+            public void onRoomStart(Boolean started) {
+                if (started){
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("questions", (Serializable) questions);
+                    bundle.putString("play", "friends");
+                    bundle.putString("roomCode", roomCode);
 
-                        PlayGameFragment playGameFragment = new PlayGameFragment();
-                        playGameFragment.setArguments(bundle);
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragmentContainerView, playGameFragment)
-                                .addToBackStack(null)
-                                .commit();
+                    PlayGameFragment playGameFragment = new PlayGameFragment();
+                    playGameFragment.setArguments(bundle);
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerView, playGameFragment)
+                            .addToBackStack(null)
+                            .commit();
 
-                    }
-                }
-                else {
-                    Exception ex = task.getException();
                 }
             }
         });
