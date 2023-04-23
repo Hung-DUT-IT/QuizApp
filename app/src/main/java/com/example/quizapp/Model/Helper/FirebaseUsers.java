@@ -92,4 +92,8 @@ public class FirebaseUsers {
         mDatabase.getReference("Users").child(Uid).child("name").setValue(name);
     }
 
+    public void resetPassword(String email, OnCompleteListener<Void> listener){
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(listener);
+    }
+
 }

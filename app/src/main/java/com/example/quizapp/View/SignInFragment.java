@@ -60,7 +60,10 @@ public class SignInFragment extends Fragment {
         binding.tvForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new FogotPassFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -85,6 +88,8 @@ public class SignInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(), "Sign in successful!", Toast.LENGTH_SHORT).show();
+                            String id =String.valueOf(FirebaseUsers.getInstance().getIdUserCurrent()) ;
+                            FirebaseUsers.getInstance().setPass(id,password);
                             getActivity().getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.fragmentContainerView, new HomeFragment())
                                     .addToBackStack(null)

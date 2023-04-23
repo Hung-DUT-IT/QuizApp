@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_fogotPassFragment"
+            app:destination="@id/fogotPassFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -158,4 +161,9 @@
         android:name="com.example.quizapp.View.PagerCreateQuestionFragment"
         android:label="fragment_pager_create_question"
         tools:layout="@layout/fragment_pager_create_question" />
+    <fragment
+        android:id="@+id/fogotPassFragment"
+        android:name="com.example.quizapp.View.FogotPassFragment"
+        android:label="fragment_fogot_pass"
+        tools:layout="@layout/fragment_fogot_pass" />
 </navigation>

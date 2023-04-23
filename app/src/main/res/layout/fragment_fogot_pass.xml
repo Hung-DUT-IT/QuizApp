@@ -9,7 +9,7 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:background="#242A42"
-        tools:context=".View.Login">
+        tools:context=".View.FogotPassFragment">
 
         <ImageView
             android:layout_width="22dp"
@@ -30,7 +30,7 @@
                 android:layout_marginLeft="15dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="5sp"
-                android:text="Already \nhave an \nAccount?"
+                android:text="You fogot \npassword ?"
                 android:textColor="@color/white"
                 android:textSize="32sp"
                 android:textStyle="normal|bold" />
@@ -47,7 +47,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:src="@drawable/oip" />
         <ImageView
             android:layout_width="333dp"
@@ -55,6 +55,18 @@
             android:layout_margin="20dp"
             android:src="@drawable/ic_side_bg"
             android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_forgot_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Enter your email"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,46 +86,18 @@
                 android:maxLines="1"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_marginBottom="30dp"
-            android:textColorHint="@color/white"
-            android:hint="Password">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-                android:inputType="textPassword"
-                android:background="@android:color/transparent"
-                android:textColor="@color/white"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_sign_in"
+            android:id="@+id/btn_send"
             android:layout_width="280dp"
             android:layout_height="56dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#2E425A"
             android:layout_gravity="center"
-            android:text="Sign In"
+            android:text="Send"
             app:cornerRadius="20dp"/>
-        <TextView
-            android:id="@+id/tv_forgot_pass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:layout_margin="10dp"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Forgot Password?"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+
 
     </LinearLayout>
 </layout>
